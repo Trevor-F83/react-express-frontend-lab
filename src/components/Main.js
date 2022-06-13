@@ -11,7 +11,7 @@ import Show from '../pages/Show.js';
 
 const Main = (props) => {
 
-    const [ people, setPeople ] = useState([]);
+    const [ people, setPeople ] = useState(null);
 
     const URL = 'http://localhost:4000/people'
 
@@ -19,15 +19,15 @@ const Main = (props) => {
         const response = await fetch(URL);
         const data = await response.json();
         setPeople(data);
-    }
+    };
 
-    const createPeople = async () => {
+    const createPeople = async (person) => {
         await fetch(URL, {
             method: 'POST',
             headers: {
                 'Content-type': 'Application/json'
             },
-            body: JSON.stringify(peson)
+            body: JSON.stringify(person)
         });
         getPeople();
     };

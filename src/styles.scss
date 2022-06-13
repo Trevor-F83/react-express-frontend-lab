@@ -1,0 +1,32 @@
+
+
+// You can create SASS variables here
+
+$mainColor: black;
+$contrastColor: white;
+
+// Mixins (aka preset styles)
+@mixin white-text-black-bg {
+    color: $contrastColor;
+    background-color: $mainColor;
+}
+
+@mixin black-text-white-bg {
+    color: $mainColor;
+    background-color: $contrastColor;
+}
+
+// Header
+
+.nav {
+    @include white-text-black-bg;
+    display: flex;
+    justify-content: flex-start;
+    a {
+        @include white-text-black-bg;
+        div {
+            margin: 10px;
+            font-size: large;
+        }
+    }
+}
