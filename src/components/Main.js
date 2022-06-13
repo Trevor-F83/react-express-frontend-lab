@@ -28,7 +28,7 @@ const Main = (props) => {
     return (
         <main>
             <Route exact path="/">
-                <Index />
+                <Index people={people} />
             </Route>
             {/*were taking all 3 properties (match, history, location) and spreading them. Props Spreading */}
             {/* history={rp.history} match={rp.match} location={rp.location} this is the long version of <Show {...rp} /> */}
