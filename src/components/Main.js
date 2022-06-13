@@ -21,6 +21,17 @@ const Main = (props) => {
         setPeople(data);
     }
 
+    const createPeople = async () => {
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'Application/json'
+            },
+            body: JSON.stringify(peson)
+        });
+        getPeople();
+    };
+
     useEffect(() => {
         getPeople();
     }, []);
@@ -28,7 +39,7 @@ const Main = (props) => {
     return (
         <main>
             <Route exact path="/">
-                <Index people={people} />
+                <Index people={people} createPeople={createPeople} />
             </Route>
             {/*were taking all 3 properties (match, history, location) and spreading them. Props Spreading */}
             {/* history={rp.history} match={rp.match} location={rp.location} this is the long version of <Show {...rp} /> */}
