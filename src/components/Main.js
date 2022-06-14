@@ -13,7 +13,7 @@ const Main = (props) => {
 
     const [ people, setPeople ] = useState(null);
 
-    const URL = 'http://localhost:4000/people'
+    const URL = 'http://localhost:4000/people/'
 
     const getPeople = async () => {
         const response = await fetch(URL);
@@ -36,6 +36,17 @@ const Main = (props) => {
         getPeople();
     }, []);
 
+    const updatePeople = async (updatedPerson, id) => {
+        await fetch(URL + id, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'Application/json'
+            },
+            body: JSON.stringify(updatedPerson)
+        });
+        getPeople();
+    }
+
     return (
         <main>
             <Route exact path="/">
@@ -44,7 +55,11 @@ const Main = (props) => {
             {/*were taking all 3 properties (match, history, location) and spreading them. Props Spreading */}
             {/* history={rp.history} match={rp.match} location={rp.location} this is the long version of <Show {...rp} /> */}
             <Route path="/people/:id" render={(renderProps) => (
-            <Show people={people} {...renderProps} />
+            <Show 
+            {...renderProps} 
+            people={people} 
+            updatePeople={updatePeople}
+                />
             )} />
         </main>
     );
