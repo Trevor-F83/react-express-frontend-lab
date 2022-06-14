@@ -47,6 +47,15 @@ const Main = (props) => {
         getPeople();
     }
 
+    const deletePeople = async (id) => {
+        await fetch(URL + id, {method: 'DELETE'});
+        getPeople(); 
+    }
+
+    useEffect(() => {
+        getPeople();
+    }, []);
+
     return (
         <main>
             <Route exact path="/">
@@ -59,6 +68,7 @@ const Main = (props) => {
             {...renderProps} 
             people={people} 
             updatePeople={updatePeople}
+            deletePeople={deletePeople}
                 />
             )} />
         </main>
